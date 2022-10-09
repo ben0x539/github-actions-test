@@ -2,13 +2,19 @@ name: test it
 run-name: ${{ github.actor }} pressed button
 on: [push]
 jobs:
-  testing:
+  ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+        with: toolchain: stable
       - uses: actions-rs/cargo@v1
-        with:
-          command: test
+        with: command: test
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v1
+        with: toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with: command: test
