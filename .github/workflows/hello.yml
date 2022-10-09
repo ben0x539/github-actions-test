@@ -1,13 +1,14 @@
-name: Hello
+name: test it
 run-name: ${{ github.actor }} pressed button
 on: [push]
 jobs:
-  Hello-World:
+  testing:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ github.event_name }} / ${{ runner.os }} / ${{ github.ref }} / ${{ github.repository }}"
-      - run: echo "${{ github.workspace }}" ; ls -Rla "${{ github.workspace }}"
-        name: steps have names but only sometimes i guess
       - uses: actions/checkout@v3
-      - run: echo "${{ github.workspace }}" ; ls -Rla "${{ github.workspace }}"
-      - run: echo "${{ job.status }}"
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with:
+          command: test
